@@ -16,8 +16,8 @@ minetest.register_on_mods_loaded(function()
     for name, def in pairs(teacher.registered_tutorials) do
         local added = false
 
-        if def.trigers then
-            for trigger_i, trigger in ipairs(def.trigers) do
+        if def.triggers then
+            for trigger_i, trigger in ipairs(def.triggers) do
                 logger:assert(type(trigger.name) == "string",
                     ("In tutorial %s: invalid trigger.name type in trigger #%d: %s"):format(
                         name, trigger_i, type(trigger.name)

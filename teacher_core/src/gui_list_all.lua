@@ -127,7 +127,7 @@ teacher.gui_list_all = flow.make_gui(function(player, ctx)
     local selected = ctx.form.textlist_select or 1
     if selected > #ctx.textlist then
         selected = 1
-    elseif selected < 0 then
+    elseif selected <= 0 then
         selected = #ctx.textlist
     end
     while ctx.list[selected] == false do
@@ -145,12 +145,15 @@ teacher.gui_list_all = flow.make_gui(function(player, ctx)
     end
     ctx.form.textlist_select = selected
 
+    local entry = teacher.registered_tutorials[ctx.list[selected]]
+
     if ctx.old_selected ~= selected then
-        ctx.page = 1
+        ctx.page = ctx.page == -1 and #entry or 1
         ctx.old_selected = selected
+    else
+        ctx.page = ctx.page == -1 and #entry or ctx.page
     end
 
-    local entry = teacher.registered_tutorials[ctx.list[selected]]
     local page = entry[ctx.page]
 
     return gui.VBox {
@@ -192,6 +195,8 @@ teacher.gui_list_all = flow.make_gui(function(player, ctx)
                         label = S("Back"),
                         on_event = (ctx.page == 1) and function(_, ctx_e)
                             ctx_e.form.textlist_select = ctx_e.form.textlist_select - 1
+                            ctx_e.page = -1
+                            return true
                         end or function(_, ctx_e)
                             ctx_e.page = ctx_e.page - 1
                             return true
@@ -207,6 +212,7 @@ teacher.gui_list_all = flow.make_gui(function(player, ctx)
                         label = S("Next"),
                         on_event = (ctx.page == #entry) and function(_, ctx_e)
                             ctx_e.form.textlist_select = ctx_e.form.textlist_select + 1
+                            ctx_e.page = 1
                             return true
                         end or function(_, ctx_e)
                             ctx_e.page = ctx_e.page + 1
