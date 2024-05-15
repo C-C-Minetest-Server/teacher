@@ -68,6 +68,9 @@ function teacher.divide_entry_by_group(player, entries)
                     visited[entry_name] = true
                 end
             end
+            table.sort(group_tbn, function(a, b)
+                return entries[a] < entries[b]
+            end)
             rtn[group_name] = #group_tbn >= 1 and group_tbn or nil
         end
     end
@@ -78,6 +81,9 @@ function teacher.divide_entry_by_group(player, entries)
             none_tbn[#none_tbn + 1] = entry_name
         end
     end
+    table.sort(none_tbn, function(a, b)
+        return entries[a] < entries[b]
+    end)
     rtn.none = #none_tbn >= 1 and none_tbn or nil
 
     return rtn
