@@ -11,7 +11,7 @@ local logger = _int.logger:sublogger("chat")
 minetest.register_chatcommand("teacher_unlock", {
     description = S("Unlock a tutorial for a player"),
     params = "<target> <entry_name>",
-    privs = {server = true},
+    privs = { server = true },
     func = function(name, param)
         local splits = string.split(param, " ", false, 1)
         local target, entry_name = splits[1], splits[2]
@@ -40,7 +40,7 @@ minetest.register_chatcommand("teacher_unlock", {
 minetest.register_chatcommand("teacher_simple_show", {
     description = S("Show a tutorial using the simple GUI"),
     params = "<entry_name>",
-    privs = {interact = true},
+    privs = { interact = true },
     func = function(name, param)
         local player = minetest.get_player_by_name(name)
         if not player then

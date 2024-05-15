@@ -64,6 +64,7 @@ modlib.minetest.register_globalstep(1, function()
             for _, value in ipairs(teacher.registered_tutorials_with_trigger.approach_pos) do
                 if teacher.trigger_check_approach_pos(player, value.trigger) then
                     teacher.unlock_entry_for_player(player, value.name)
+                    break
                 end
             end
         end
@@ -72,8 +73,40 @@ modlib.minetest.register_globalstep(1, function()
             for _, value in ipairs(teacher.registered_tutorials_with_trigger.approach_node) do
                 if teacher.trigger_check_approach_node(player, value.trigger) then
                     teacher.unlock_entry_for_player(player, value.name)
+                    break
                 end
             end
         end
     end
+end)
+
+-- Check obtain_item unlock
+
+function teacher.trigger_check_obtain_item_logic(itemstack, player)
+    if teacher.registered_tutorials_with_trigger.obtain_item then
+        local itemname = itemstack:get_name()
+        for _, value in ipairs(teacher.registered_tutorials_with_trigger.obtain_item) do
+            if value.itemname == itemname then
+                teacher.unlock_entry_for_player(player, value.name)
+                break
+            end
+        end
+    end
+end
+
+--> Obtained via crafting
+minetest.register_on_craft(function(itemstack, player)
+    teacher.trigger_check_obtain_item_logic(itemstack, player)
+end)
+
+--> Obtained via picking up
+minetest.register_on_item_pickup(function(itemstack, player)
+    teacher.trigger_check_obtain_item_logic(itemstack, player)
+end)
+
+--> Obtained via putting into inventory
+minetest.register_on_player_inventory_action(function(player, action, _, inventory_info)
+    if action ~= "put" then return end
+    local itemstack = inventory_info.stack
+    teacher.trigger_check_obtain_item_logic(itemstack, player)
 end)
