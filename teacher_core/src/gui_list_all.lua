@@ -106,7 +106,8 @@ teacher.gui_list_all = flow.make_gui(function(player, ctx)
             for _, entry_name in ipairs(entries[group_name]) do
                 if teacher.registered_tutorials[entry_name] then
                     ctx.list[#ctx.list + 1] = entry_name
-                    ctx.textlist[#ctx.textlist + 1] = "\t" .. teacher.registered_tutorials[entry_name].title or entry_name
+                    ctx.textlist[#ctx.textlist + 1] =
+                        "\t" .. teacher.registered_tutorials[entry_name].title or entry_name
                 end
             end
         end

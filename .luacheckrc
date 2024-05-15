@@ -22,7 +22,7 @@ read_globals = {
 
     "vector",
 
-    "flow", "logging", "settings_loader",
+    "flow", "logging", "settings_loader", "modlib",
 
     table = {
         fields = {
