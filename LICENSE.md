@@ -21,5 +21,7 @@
 ## License of media
 
 * `teacher_no_texture.png`: erlehmann, Warr1024, rollerozxa, [CC BY-SA 3.0][CCBYSA3]
+* `teacher_tutorial_self_teacher_*.png`: 1F616EMO, [CC0][CC0]
 
 [CCBYSA3]: http://creativecommons.org/licenses/by-sa/3.0/
+[CC0]: https://creativecommons.org/publicdomain/zero/1.0/
