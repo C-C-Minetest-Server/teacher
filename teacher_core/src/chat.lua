@@ -61,7 +61,7 @@ minetest.register_chatcommand("teacher_simple_show", {
     end,
 })
 
-minetest.register_chatcommand("tutorials", {
+local tutorials_def = {
     description = S("Show all unlocked tutorials"),
     func = function(name, _)
         local player = minetest.get_player_by_name(name)
@@ -72,4 +72,7 @@ minetest.register_chatcommand("tutorials", {
         teacher.show_all(player)
         return true, S("GUI shown.")
     end,
-})
+}
+
+minetest.register_chatcommand("tutorials", tutorials_def)
+minetest.register_chatcommand("tutorial", tutorials_def)
