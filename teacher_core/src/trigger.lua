@@ -8,9 +8,11 @@ local _int = teacher.internal
 local logger = _int.logger:sublogger("trigger")
 
 ---Table of tables containing tutorials with a specific trigger
-
 ---@type { [string]: { name: string, trigger: table }[] }
 teacher.registered_tutorials_with_trigger = {}
+
+local obtain_item_to_tutorials = {}
+local obtain_item_group_to_tutorials = {}
 
 minetest.register_on_mods_loaded(function()
     for name, def in pairs(teacher.registered_tutorials) do
@@ -43,6 +45,25 @@ minetest.register_on_mods_loaded(function()
         end
         teacher.registered_tutorials_with_trigger.none = none_tb
     end
+
+    if teacher.registered_tutorials_with_trigger.obtain_item then
+        for _, entry in ipairs(teacher.registered_tutorials_with_trigger.obtain_item) do
+            if string.sub(entry.trigger.itemname, 1, 6) == "group:" then
+                local groupname = string.sub(entry.trigger.itemname, 6)
+                local tb = obtain_item_group_to_tutorials[groupname] or {}
+                tb[#tb+1] = entry.name
+                if not obtain_item_group_to_tutorials[groupname] then
+                    obtain_item_group_to_tutorials[groupname] = tb
+                end
+            else
+                local tb = obtain_item_to_tutorials[entry.trigger.itemname] or {}
+                tb[#tb+1] = entry.name
+                if not obtain_item_to_tutorials[entry.trigger.itemname] then
+                    obtain_item_to_tutorials[entry.trigger.itemname] = tb
+                end
+            end
+        end
+    end
 end)
 
 function teacher.trigger_check_approach_pos(player, trigger)
@@ -64,7 +85,6 @@ modlib.minetest.register_globalstep(1, function()
             for _, value in ipairs(teacher.registered_tutorials_with_trigger.approach_pos) do
                 if teacher.trigger_check_approach_pos(player, value.trigger) then
                     teacher.unlock_entry_for_player(player, value.name)
-                    break
                 end
             end
         end
@@ -73,40 +93,34 @@ modlib.minetest.register_globalstep(1, function()
             for _, value in ipairs(teacher.registered_tutorials_with_trigger.approach_node) do
                 if teacher.trigger_check_approach_node(player, value.trigger) then
                     teacher.unlock_entry_for_player(player, value.name)
-                    break
+                end
+            end
+        end
+
+        if teacher.registered_tutorials_with_trigger.obtain_item then
+            local inv = player:get_inventory()
+            local main = inv:get_list("main")
+
+            for _, stack in ipairs(main) do
+                local itemname = stack:get_name()
+                local def = stack:get_definition()
+
+                if obtain_item_to_tutorials[itemname] then
+                    for _, entry in ipairs(obtain_item_to_tutorials[itemname]) do
+                        teacher.unlock_entry_for_player(player, entry)
+                    end
+                end
+
+                if def.groups then
+                    for groupname, _ in pairs(def.groups) do
+                        if obtain_item_group_to_tutorials[groupname] then
+                            for _, entry in ipairs(obtain_item_group_to_tutorials[groupname]) do
+                                teacher.unlock_entry_for_player(player, entry)
+                            end
+                        end
+                    end
                 end
             end
         end
     end
-end)
-
--- Check obtain_item unlock
-
-function teacher.trigger_check_obtain_item_logic(itemstack, player)
-    if teacher.registered_tutorials_with_trigger.obtain_item then
-        local itemname = itemstack:get_name()
-        for _, value in ipairs(teacher.registered_tutorials_with_trigger.obtain_item) do
-            if value.itemname == itemname then
-                teacher.unlock_entry_for_player(player, value.name)
-                break
-            end
-        end
-    end
-end
-
---> Obtained via crafting
-minetest.register_on_craft(function(itemstack, player)
-    teacher.trigger_check_obtain_item_logic(itemstack, player)
-end)
-
---> Obtained via picking up
-minetest.register_on_item_pickup(function(itemstack, player)
-    teacher.trigger_check_obtain_item_logic(itemstack, player)
-end)
-
---> Obtained via putting into inventory
-minetest.register_on_player_inventory_action(function(player, action, _, inventory_info)
-    if action ~= "put" then return end
-    local itemstack = inventory_info.stack
-    teacher.trigger_check_obtain_item_logic(itemstack, player)
 end)
