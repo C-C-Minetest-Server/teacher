@@ -82,7 +82,9 @@ function teacher.divide_entry_by_group(player, entries)
         end
     end
     table.sort(none_tbn, function(a, b)
-        return entries[a] > entries[b]
+        local a_name = string.upper(teacher.registered_tutorials[a].title)
+        local b_name = string.upper(teacher.registered_tutorials[b].title)
+        return a_name < b_name
     end)
     rtn.none = #none_tbn >= 1 and none_tbn or nil
 
