@@ -43,6 +43,13 @@ teacher.register_on_unlock(function(player, entry_name)
         S("New tutorial unlocked: @1", display_name) .. "\n" ..
         S("Type in /tutorials to check it out.")
     ))
+
+    if minetest.global_exists("unified_inventory") then
+        minetest.chat_send_player(name, minetest.colorize("orange",
+            S("The tutorial menu is also accessible from the inventory.") .. "\n" ..
+            S("Click the exclamation mark icon.")
+        ))
+    end
 end)
 
 ---Unlock an entry or entries for a player

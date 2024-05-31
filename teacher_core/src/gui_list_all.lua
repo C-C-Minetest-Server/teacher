@@ -238,3 +238,15 @@ end)
 function teacher.show_all(player)
     teacher.gui_list_all:show(player)
 end
+
+-- Register unified_inventory button
+if minetest.global_exists("unified_inventory") then
+    unified_inventory.register_button("teacher_show_all", {
+        type = "image",
+        image = "teacher_ui_icon.png",
+        tooltip = S("Tutorials"),
+        action = function(player)
+            teacher.show_all(player)
+        end,
+    })
+end

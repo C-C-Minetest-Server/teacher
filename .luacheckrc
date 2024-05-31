@@ -23,6 +23,7 @@ read_globals = {
     "vector",
 
     "flow", "logging", "settings_loader", "modlib",
+    "unified_inventory",
 
     table = {
         fields = {
