@@ -1,0 +1,36 @@
+# textdomain: teacher_core
+
+##[ src/api.lua ]##
+New tutorial unlocked: @1=
+Type in /tutorials to check it out.=
+The tutorial menu is also accessible from the inventory.=
+Click the exclamation mark icon.=
+
+##[ src/chat.lua ]##
+Unlock a tutorial for a player=
+Invalid usage, see /help @1=
+Player @1 is not online.=
+Invalid entry: @1=
+Unlocked entry @1 for @2.=
+Failed to unlock entry @1 for @2.=
+Show a tutorial using the simple GUI=
+You must be online to use this command.=
+GUI shown.=
+Show all unlocked tutorials=
+
+##[ src/gui_list_all.lua ]##
+Other Tutorials=
+Recently Unlocked=
+No tutorials to show.=
+All Tutorials=
+Tutorials=
+
+##[ src/gui_list_all.lua ]##
+##[ src/gui_simple_show.lua ]##
+Exit=
+Back=
+Page @1/@2=
+Next=
+
+##[ src/gui_simple_show.lua ]##
+Tutorial: @1=

@@ -1,0 +1,7 @@
+# textdomain: teacher_tutorial_self
+
+##[ init.lua ]##
+The Teacher System=
+To view your unlocked tutorials, type @1 in the chatroom.=
+Select the tutorial you want to see in the left panel.=
+Use the buttons at the bottom to navigate between pages.=
