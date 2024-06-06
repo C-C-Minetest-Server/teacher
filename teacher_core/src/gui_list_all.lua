@@ -97,7 +97,7 @@ local function sort_entries_keys(entries)
         keys[#keys + 1] = key
     end
     table.sort(keys, function(a, b)
-        return teacher.registered_groups[a].sort < teacher.registered_groups[b].sort
+        return teacher.registered_groups[a].sort > teacher.registered_groups[b].sort
     end)
     return keys
 end
