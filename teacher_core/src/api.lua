@@ -1,6 +1,7 @@
 -- teacher/teacher_core/src/api.lua
 -- API to interact with the data
 -- depends: storage, register
+-- runtime: gui_simple_show
 -- Copyright (C) 2024  1F616EMO
 -- SPDX-License-Identifier: LGPL-3.0-or-later
 
@@ -37,7 +38,8 @@ end
 ---Notify players about unlocked tutorial
 teacher.register_on_unlock(function(player, entry_name)
     local name = player:get_player_name()
-    local display_name = teacher.registered_tutorials[entry_name].title or entry_name
+    local entry = teacher.registered_tutorials[entry_name]
+    local display_name = entry.title or entry_name
 
     minetest.chat_send_player(name, minetest.colorize("orange",
         S("New tutorial unlocked: @1", display_name) .. "\n" ..
@@ -49,6 +51,10 @@ teacher.register_on_unlock(function(player, entry_name)
             S("The tutorial menu is also accessible from the inventory.") .. "\n" ..
             S("Click the exclamation mark icon.")
         ))
+    end
+
+    if entry.show_on_unlock then
+        teacher.simple_show(player, entry_name)
     end
 end)
 

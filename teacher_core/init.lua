@@ -13,8 +13,8 @@ for _, name in ipairs({
     "settings",
     "storage",
     "register",
-    "trigger",         -- depend: register
-    "api",             -- depends: storage, register
+    "trigger",         -- depends: register
+    "api",             -- depends: storage, register; runtime: gui_simple_show
     "gui_simple_show", -- depends: api, register
     "gui_list_all",    -- depends: api, register
     "chat",            -- depends: register, api, gui_simple_show

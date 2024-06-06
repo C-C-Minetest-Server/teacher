@@ -14,6 +14,7 @@
 ---@class TeacherTutorialSet: TeacherTutorialPage[]
 ---@field title string The title of the tutorial set
 ---@field triggers? table[] List of triggers
+---@field show_on_unlock? boolean Whether to show the tutorial upon unlocking. default: `false`
 
 ---Table of registered tutorials
 ---@type { [string]: TeacherTutorialSet }
