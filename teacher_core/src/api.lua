@@ -54,7 +54,7 @@ teacher.register_on_unlock(function(player, entry_name)
     end
 
     if entry.show_on_unlock then
-        teacher.simple_show(player, entry_name)
+        teacher.simple_show(player, entry_name, entry.show_disallow_close)
     end
 end)
 

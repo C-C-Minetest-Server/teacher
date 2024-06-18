@@ -29,10 +29,10 @@ teacher.gui_simple_show = flow.make_gui(function(_, ctx)
                 label = S("Tutorial: @1", page.title or entry.title or ctx.entry_name),
                 expand = true, align_h = "left",
             },
-            gui.ButtonExit {
+            (ctx.disallow_close and gui.ButtonExit {
                 w = 0.3, h = 0.3,
                 label = "x",
-            },
+            } or gui.Nil{}),
         },
         gui.Box { w = 0.05, h = 0.05, color = "grey" },
         gui.Image {
@@ -76,8 +76,12 @@ end)
 ---Show the given entry
 ---@param player ObjectRef
 ---@param entry_name string
-function teacher.simple_show(player, entry_name)
-    teacher.gui_simple_show:show(player, { entry_name = entry_name })
+---@param disallow_close? bool
+function teacher.simple_show(player, entry_name, disallow_close)
+    teacher.gui_simple_show:show(player, {
+        entry_name = entry_name,
+        disallow_close = disallow_close and true or false,
+    })
 end
 
 ---Unlock the given entry, and show it to the player.
