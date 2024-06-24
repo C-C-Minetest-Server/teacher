@@ -124,3 +124,21 @@ modlib.minetest.register_globalstep(1, function()
         end
     end
 end)
+
+minetest.register_on_placenode(function(_, newnode, placer)
+    if not placer:is_player() or placer.is_fake_player then return end
+    for _, value in ipairs(teacher.registered_tutorials_with_trigger.on_placenode) do
+        if value.trigger.nodename == newnode.name then
+            teacher.unlock_entry_for_player(placer, value.name)
+        end
+    end
+end)
+
+minetest.register_on_dignode(function(_, oldnode, digger)
+    if not digger:is_player() or digger.is_fake_player then return end
+    for _, value in ipairs(teacher.registered_tutorials_with_trigger.on_dignode) do
+        if value.trigger.nodename == oldnode.name then
+            teacher.unlock_entry_for_player(digger, value.name)
+        end
+    end
+end)
