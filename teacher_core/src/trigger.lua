@@ -122,6 +122,14 @@ modlib.minetest.register_globalstep(1, function()
                 end
             end
         end
+
+        if teacher.registered_tutorials_with_trigger.playstep then
+            for _, value in ipairs(teacher.registered_tutorials_with_trigger.approach_node) do
+                if value.trigger.func(player) then
+                    teacher.unlock_entry_for_player(player, value.name)
+                end
+            end
+        end
     end
 end)
 
