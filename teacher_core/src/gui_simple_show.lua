@@ -29,10 +29,10 @@ teacher.gui_simple_show = flow.make_gui(function(_, ctx)
                 label = S("Tutorial: @1", page.title or entry.title or ctx.entry_name),
                 expand = true, align_h = "left",
             },
-            (ctx.disallow_close and gui.ButtonExit {
+            (ctx.disallow_close and gui.Nil{} or gui.ButtonExit {
                 w = 0.3, h = 0.3,
                 label = "x",
-            } or gui.Nil{}),
+            }),
         },
         gui.Box { w = 0.05, h = 0.05, color = "grey" },
         gui.Image {
