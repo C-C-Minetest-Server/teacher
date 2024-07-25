@@ -25,5 +25,10 @@ teacher.registered_tutorials = {}
 ---@param name string
 ---@param def TeacherTutorialSet
 function teacher.register_turorial(name, def)
+    for _, content in ipairs(def) do
+        if type(content.text) == "table" then
+            content.text = table.concat(content.text, "\n\n")
+        end
+    end
     teacher.registered_tutorials[name] = def
 end
