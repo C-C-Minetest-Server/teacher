@@ -37,24 +37,22 @@ end
 
 ---Notify players about unlocked tutorial
 teacher.register_on_unlock(function(player, entry_name)
-    local name = player:get_player_name()
     local entry = teacher.registered_tutorials[entry_name]
-    local display_name = entry.title or entry_name
-
-    minetest.chat_send_player(name, minetest.colorize("orange",
-        S("New tutorial unlocked: @1", display_name) .. "\n" ..
-        S("Type in /tutorials to check it out.")
-    ))
-
-    if minetest.global_exists("unified_inventory") then
-        minetest.chat_send_player(name, minetest.colorize("orange",
-            S("The tutorial menu is also accessible from the inventory.") .. "\n" ..
-            S("Click the exclamation mark icon.")
-        ))
-    end
 
     if entry.show_on_unlock then
         teacher.simple_show(player, entry_name, entry.show_disallow_close)
+    else
+        local name = player:get_player_name()
+        local display_name = entry.title or entry_name
+
+        local msg = S("New tutorial unlocked: @1", display_name) .. "\n"
+        if minetest.global_exists("unified_inventory") then
+            msg = msg .. S("Type in /tutorials to check it out, or by the icon in your inventory.")
+        else
+            msg = msg .. S("Type in /tutorials to check it out.")
+        end
+
+        minetest.chat_send_player(name, minetest.colorize("orange", msg))
     end
 end)
 
