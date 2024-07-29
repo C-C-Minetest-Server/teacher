@@ -22,6 +22,8 @@
 
 * `teacher_no_texture.png`: erlehmann, Warr1024, rollerozxa, [CC BY-SA 3.0][CCBYSA3]
 * `teacher_tutorial_self_teacher_*.png`: 1F616EMO, [CC0][CC0]
+* `teacher_unlock_sound.ogg`: Guilherme Marçal Silva \<[guimarcalsilva@gmail.com](mailto:guimarcalsilva@gmail.com)\>, [CC BY-SA 4.0][CCBYSA4], from Ocean Sound Theme for [KDE Plasma](https://kde.org/plasma-desktop/)
 
 [CCBYSA3]: http://creativecommons.org/licenses/by-sa/3.0/
+[CCBYSA4]: http://creativecommons.org/licenses/by-sa/4.0/
 [CC0]: https://creativecommons.org/publicdomain/zero/1.0/

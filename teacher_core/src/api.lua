@@ -35,14 +35,23 @@ function teacher.run_unlock_callbacks(player, entry_name)
     end
 end
 
+local notify_spec = {
+    name = "teacher_unlock_sound"
+}
+
 ---Notify players about unlocked tutorial
 teacher.register_on_unlock(function(player, entry_name)
     local entry = teacher.registered_tutorials[entry_name]
+    local name = player:get_player_name()
 
     if entry.show_on_unlock then
-        teacher.simple_show(player, entry_name, entry.show_disallow_close)
+        minetest.sound_play(notify_spec, { to_player = name }, true)
+        minetest.after(0.2, function()
+            if minetest.get_player_by_name(name) then
+                teacher.simple_show(player, entry_name, entry.show_disallow_close)
+            end
+        end)
     else
-        local name = player:get_player_name()
         local display_name = entry.title or entry_name
 
         local msg = S("New tutorial unlocked: @1", display_name) .. "\n"
