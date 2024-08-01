@@ -251,8 +251,8 @@ if minetest.global_exists("unified_inventory") then
     })
 end
 if minetest.global_exists("sway") then
-    local pagename = "teacher_core:teacher_show_all"
-    sway.register_page(pagename, {
+    local pagename = "teacher_show_all"
+    sway.register_page("teacher_core:"..pagename, {
         title = S("Tutorials"),
         get = function(_self, player, ctx)
             if not ctx[pagename] then
