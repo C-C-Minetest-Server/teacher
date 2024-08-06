@@ -173,7 +173,7 @@ teacher.gui_list_all = flow.make_gui(function(player, ctx)
                 label = S("All Tutorials"),
                 expand = true, align_h = "left",
             },
-            gui.ButtonExit {
+            ctx.inside_sway and gui.Nil{} or gui.ButtonExit {
                 w = 0.3, h = 0.3,
                 label = "x",
             },
@@ -248,5 +248,22 @@ if minetest.global_exists("unified_inventory") then
         action = function(player)
             teacher.show_all(player)
         end,
+    })
+end
+if minetest.global_exists("sway") then
+    local pagename = "teacher_show_all"
+    sway.register_page("teacher_core:"..pagename, {
+        title = S("Tutorials"),
+        get = function(_self, player, ctx)
+            if not ctx[pagename] then
+                ctx[pagename] = { inside_sway = true }
+            end
+            return sway.Form {
+                teacher.gui_list_all:embed {
+                    player = player,
+                    name = pagename
+                }
+            }
+        end
     })
 end
