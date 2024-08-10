@@ -12,11 +12,11 @@ teacher.register_turorial("teacher_tutorial_self:teacher", {
         text = S("To view your unlocked tutorials, type @1 in the chatroom.", "/tutorials"),
     },
     {
-        texture = "teacher_tutorial_self_teacher_2.png",
+        texture = "teacher_tutorial_self_teacher_2.jpg",
         text = S("Select the tutorial you want to see in the left panel.")
     },
     {
-        texture = "teacher_tutorial_self_teacher_3.png",
+        texture = "teacher_tutorial_self_teacher_3.jpg",
         text = S("Use the buttons at the bottom to navigate between pages.")
     }
 })
