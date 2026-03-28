@@ -24,7 +24,7 @@ teacher.registered_tutorials = {}
 ---Register tutorial entry
 ---@param name string
 ---@param def TeacherTutorialSet
-function teacher.register_turorial(name, def)
+function teacher.register_tutorial(name, def)
     for _, content in ipairs(def) do
         if type(content.text) == "table" then
             content.text = table.concat(content.text, "\n\n")
@@ -32,3 +32,6 @@ function teacher.register_turorial(name, def)
     end
     teacher.registered_tutorials[name] = def
 end
+
+-- Long-exists typo, damn it
+teacher.register_turorial = teacher.register_tutorial

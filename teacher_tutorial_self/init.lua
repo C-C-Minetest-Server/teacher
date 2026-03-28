@@ -5,7 +5,7 @@
 
 local S = minetest.get_translator("teacher_tutorial_self")
 
-teacher.register_turorial("teacher_tutorial_self:teacher", {
+teacher.register_tutorial("teacher_tutorial_self:teacher", {
     title = S("The Teacher System"),
     {
         texture = "teacher_tutorial_self_teacher_1.png",
