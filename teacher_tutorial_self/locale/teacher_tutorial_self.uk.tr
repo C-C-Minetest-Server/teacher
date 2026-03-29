@@ -1,0 +1,7 @@
+# textdomain: teacher_tutorial_self
+
+##[ init.lua ]##
+The Teacher System=Система посібників
+To view your unlocked tutorials, type @1 in the chatroom.=Введіть @1 у чаті, щоб переглянути відкриті посібники.
+Select the tutorial you want to see in the left panel.=Оберіть посібник, який ви хочете переглянути, у лівій панелі.
+Use the buttons at the bottom to navigate between pages.=Використовуйте кнопки внизу для навігації між сторінками.
