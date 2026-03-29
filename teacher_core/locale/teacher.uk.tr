@@ -1,0 +1,40 @@
+# textdomain: teacher
+# Translated by FromKaniv
+
+Teacher=Вчитель
+Tutorial API=API для посібників
+
+##[ src/api.lua ]##
+New tutorial unlocked: @1=Новий посібник відкрито: @1
+Type in /tutorials to check it out.=Введіть /tutorials, щоб його переглянути.
+The tutorial menu is also accessible from the inventory.=Меню посібників також доступне із інвентаря.
+Click the exclamation mark icon.=Натисніть піктограму знака оклику.
+
+##[ src/chat.lua ]##
+Unlock a tutorial for a player=Відкрити посібник гравцеві
+Invalid usage, see /help @1=Неправильне використання; перегляньте /help @1
+Player @1 is not online.=Гравець @1 офлайн.
+Invalid entry: @1=Неправильний запис: @1
+Unlocked entry @1 for @2.=Відкрито запис @1 для @2.
+Failed to unlock entry @1 for @2.=Не вдалося відкрити запис @1 для @2.
+Show a tutorial using the simple GUI=Показати посібник із використанням простого графічного інтерфейсу
+You must be online to use this command.=Ви маєте бути онлайн для використання цієї команди.
+GUI shown.=Графічний інтерфейс показано.
+Show all unlocked tutorials=Показати всі відкриті посібники
+
+##[ src/gui_list_all.lua ]##
+Other Tutorials=Інші посібники
+Recently Unlocked=Нещодавно відкриті
+No tutorials to show.=Немає посібників.
+All Tutorials=Всі посібники
+Tutorials=Посібники
+
+##[ src/gui_list_all.lua ]##
+##[ src/gui_simple_show.lua ]##
+Exit=Вийти
+Back=Назад
+Page @1/@2=Сторінка @1 із @2
+Next=Далі
+
+##[ src/gui_simple_show.lua ]##
+Tutorial: @1=Посібник: @1

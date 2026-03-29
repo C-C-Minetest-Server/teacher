@@ -1,4 +1,7 @@
-# textdomain: teacher_core
+# textdomain: teacher
+
+Teacher=
+Tutorial API=
 
 ##[ src/api.lua ]##
 New tutorial unlocked: @1=
